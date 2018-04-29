@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="pl-PL">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kursy Walut NBP</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+    <script defer src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Kursy walut na podstawie NBP</h1>
+    </header>
+
+    <section>
+        <main>
+            <div class="main_currency">
+                <button class='main-currency-item' data-currency='usd'>USD/PLN</button>
+                <button class='main-currency-item' data-currency='eur'>EUR/PLN</button>
+                <button class='main-currency-item' data-currency='chf'>CHF/PLN</button>
+                <button class='main-currency-item' data-currency='gbp'>GBP/PLN</button>
+            </div>
+
+            <h2>Aktualnie obowiązujący kurs waluty</h2>
+            <div class="main_results">
+                <div class="main_currency-date">
+                    <h4>Data wyceny z dnia:</h4><span class="main_currency-dateValue"> .</span>
+                </div>
+
+                <div class="main_results-avg">
+                    <h4>Kurs średni:</h4><span class="main_results-avgValue"> </span>
+                </div>
+
+                <div class="main_results-buy">
+                    <h4>Kurs kupna:</h4><span class="main_results-buyValue"> </span>
+                </div>
+
+                <div class="main_results-sale">
+                    <h4>Kurs sprzedaży:</h4><span class="main_results-saleValue"> </span>
+                </div>
+            </div>
+            <div class="ct-chart ct-perfect-fourth"></div>
+
+            <div class="choice-number-of-days">
+                <button class='choice-number-of-days-item selected' data-currency=5>tydzień</button>
+                <button class='choice-number-of-days-item' data-currency=10>dwa tygodnie</button>
+                <button class='choice-number-of-days-item' data-currency=22>miesiąc</button>
+                <button class='choice-number-of-days-item' data-currency=66>kwartał </button>
+            </div>
+
+        </main>
+
+        <aside>
+            <h2>Kursy średnie</h2>
+            <h5>Tabela z dnia: <span class='aside_date'></span></h5>
+
+            <table class="aside_table">
+
+            </table>
+        </aside>
+    </section>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
