@@ -145,6 +145,7 @@ const exchangeChart = {
 					height: 300
 				};
 
+				// http://gionkunz.github.io/chartist-js/index.html
 				// Create a new line chart object where as first parameter we pass in a selector
 				// that is resolving to our chart container element. The Second parameter
 				// is the actual data object. As a third parameter we pass in our custom options.
@@ -174,6 +175,85 @@ const exchangeChart = {
 	}
 } // koniec obiektu exchange
 
+const exchangeArchiveData = {
+
+	selectedCurrency: '',
+	selectedDate: null,
+
+	getData: function(){
+		const archiveDataCurrency = document.querySelector('.archiveData_currency');
+		const archiveDataCurrencyItem = document.querySelectorAll('.archiveData-currency-item');
+
+		const archiveDataButton = document.querySelector('.archiveData_button');
+		const year = document.getElementById('year');
+		const month = document.getElementById('month');
+		const day = document.getElementById('day');
+
+		archiveDataCurrency.addEventListener('click', function(e){
+			e.preventDefault();
+			//wybór waluty z data-currency elementu
+			this.selectedCurrency = e.target.dataset.currency;
+
+			if(!this.selectedCurrency) return false;
+
+			//zaznaczenie wyboru waluty
+			[...archiveDataCurrencyItem].forEach((item)=>(item.classList.remove('selected')));
+			e.target.classList.add("selected");
+		}.bind(this));
+
+		archiveDataButton.addEventListener('click', function(){
+			const year = document.getElementById('year').value;
+			const month = document.getElementById('month').value;
+			const day = document.getElementById('day').value;
+
+			this.selectedDate = (`${year}-${month}-${day}`);
+		}.bind(this));
+	},
+
+	showData: function(){
+		const archiveDataButton = document.querySelector('.archiveData_button');
+
+		const archiveDataCurrencyDateValue = document.querySelector('.archiveData_currency-dateValue');
+		const archiveDataResultsAvgValue = document.querySelector('.archiveData_results-avgValue');
+		const archiveDataResultsBuyValue = document.querySelector('.archiveData_results-buyValue');
+		const archiveDataResultsSaleValue = document.querySelector('.archiveData_results-saleValue');
+
+		archiveDataButton.addEventListener('click',function(){
+
+			console.log(this.selectedCurrency);
+			console.log(this.selectedDate);
+
+			const URL_archiveCurrencyMid = `http://api.nbp.pl/api/exchangerates/rates/a/${this.selectedCurrency}/${this.selectedDate}/`;
+			const URL_archiveCurrencySellBuy = `http://api.nbp.pl/api/exchangerates/rates/c/${this.selectedCurrency}/${this.selectedDate}/`;
+
+			fetch(URL_archiveCurrencyMid)
+				.then(resp => resp.json())
+				.then(resp => {
+					const {rates:[{effectiveDate,mid}]} = resp;
+
+					//przypisania wartości z api - data + wartość średdnia
+					archiveDataCurrencyDateValue.innerText = effectiveDate;
+					archiveDataResultsAvgValue.innerText = mid;
+					console.log(resp)
+				})
+
+			fetch(URL_archiveCurrencySellBuy)
+				.then(resp => resp.json())
+				.then(resp => {
+					const {rates:[{bid,ask}]} = resp;
+
+					//przypisania wartości z api - wartość kupna i sprzedaży
+					archiveDataResultsBuyValue.innerText = bid;
+					archiveDataResultsSaleValue.innerText = ask;
+					console.log(resp)
+			})
+
+
+		}.bind(this));
+
+	}
+}
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
 	exchangeTable.averageRatesTableA();
@@ -183,4 +263,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	singleCurrencyButtonUSD.click();
 
 	exchangeChart.singleCurrencyMultiDaysChartList();
+
+	exchangeArchiveData.getData();
+	exchangeArchiveData.showData();
 });
