@@ -179,6 +179,9 @@ const exchangeArchiveData = {
 
 	selectedCurrency: '',
 	selectedDate: null,
+	validatedYear: false,
+	validatedMonth: false,
+	validatedDay: false,
 
 	getData: function(){
 		const archiveDataCurrency = document.querySelector('.archiveData_currency');
@@ -188,6 +191,43 @@ const exchangeArchiveData = {
 		const year = document.getElementById('year');
 		const month = document.getElementById('month');
 		const day = document.getElementById('day');
+
+		[year, month, day].forEach( item => {
+			item.addEventListener('input', function(){
+				if(item.checkValidity()){
+					item.style.borderBottom = '2px solid green';
+					item.style.backgroundColor = 'rgba(0,255,0,0.1)';
+
+					switch(item.name) {
+						case 'year':
+							this.validatedYear = true;
+							break;
+						case 'month':
+							this.validatedMonth = true;
+							break;
+						case 'day':
+							this.validatedDay = true;
+							break;
+					}
+
+				}else{
+					item.style.borderBottom = '2px solid red';
+					item.style.backgroundColor = 'rgba(255,0,0,0.1)';
+
+					switch(item.name) {
+						case 'year':
+							this.validatedYear = false;
+							break;
+						case 'month':
+							this.validatedMonth = false;
+							break;
+						case 'day':
+							this.validatedDay = false;
+							break;
+					}
+				}
+			}.bind(this));
+		})
 
 		archiveDataCurrency.addEventListener('click', function(e){
 			e.preventDefault();
@@ -202,11 +242,15 @@ const exchangeArchiveData = {
 		}.bind(this));
 
 		archiveDataButton.addEventListener('click', function(){
-			const year = document.getElementById('year').value;
-			const month = document.getElementById('month').value;
-			const day = document.getElementById('day').value;
+			function singleDigit(value){
+				if(value < 10){
+					return '0'+ value;
+				}else{
+					return value;
+				}
+			}
 
-			this.selectedDate = (`${year}-${month}-${day}`);
+			this.selectedDate = (`${year.value}-${singleDigit(month.value)}-${singleDigit(day.value)}`);
 		}.bind(this));
 	},
 
@@ -220,8 +264,10 @@ const exchangeArchiveData = {
 
 		archiveDataButton.addEventListener('click',function(){
 
-			console.log(this.selectedCurrency);
-			console.log(this.selectedDate);
+			if( !(this.validatedYear && this.validatedMonth && this.validatedDay) ) {
+				console.log('dupa')
+				return false;
+			}
 
 			const URL_archiveCurrencyMid = `http://api.nbp.pl/api/exchangerates/rates/a/${this.selectedCurrency}/${this.selectedDate}/`;
 			const URL_archiveCurrencySellBuy = `http://api.nbp.pl/api/exchangerates/rates/c/${this.selectedCurrency}/${this.selectedDate}/`;

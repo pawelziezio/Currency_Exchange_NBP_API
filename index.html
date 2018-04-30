@@ -70,15 +70,15 @@
                 <form class='archiveData_dateInputs' action="">
                     <div class='archiveData_dateInput'>
                         <label for="year">Rok:</label>
-                        <input type="number" name="year" id="year" value="" placeholder="2018"/>
+                        <input type="number" name="year" id="year" placeholder="2018" pattern="[a-z]{4}" min="2002" max="2018"/>
                     </div>
                     <div class='archiveData_dateInput'>
                         <label for="month">Miesiąc:</label>
-                        <input type="number" name="month" id="month" value="" placeholder="03"/>
+                        <input type="number" name="month" id="month" placeholder="04" pattern="[0-9]{1,2}" min="1" max="12"/>
                     </div>
                     <div class='archiveData_dateInput'>
                         <label for="day">Dzień:</label>
-                        <input type="number" name="day" id="day" value="" placeholder="26"/>
+                        <input type="number" name="day" id="day" placeholder="26" pattern="[0-9]{1,2}"min="1" max="31"/>
                     </div>
                     <div class='archiveData_dateInput'>
                         <button class ='archiveData_button' type="button">Pokaż dane</button>
