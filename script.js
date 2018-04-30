@@ -265,7 +265,6 @@ const exchangeArchiveData = {
 		archiveDataButton.addEventListener('click',function(){
 
 			if( !(this.validatedYear && this.validatedMonth && this.validatedDay) ) {
-				console.log('dupa')
 				return false;
 			}
 
