@@ -28,7 +28,7 @@ main{
 
 aside{
     width: 30%;
-    background-color: rgb(152, 178, 247);
+    background-color: rgb(216, 213, 213);
     border: 1px solid black;
     padding: 10px;
 }
@@ -62,23 +62,23 @@ aside{
     color: rgba(0, 0, 0, 0.4);
     font-size: 0.75rem;
     line-height: 1; }
-  
+
   .ct-point {
      stroke-width: 4px;
      stroke-linecap: round; }
-  
+
   .ct-series-a .ct-point, .ct-series-a .ct-line, .ct-series-a .ct-bar, .ct-series-a .ct-slice-donut {
       stroke: #585e7e; }
-  
+
   .ct-line {
     fill: none;
     stroke-width: 1px;
   }
-  
+
   .ct-chart.ct-perfect-fourth{
       height: 300px ;
   }
-  
+
   /* ------- */
 
 .archiveData_currency{
@@ -102,4 +102,9 @@ input{
 .archiveData_results{
     display: flex;
     justify-content: space-around;
+}
+
+.archiveData-currency-error-msg{
+    display: none;
+    color: red;
 }

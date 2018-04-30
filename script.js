@@ -194,8 +194,7 @@ const exchangeArchiveData = {
 
 		[year, month, day].forEach( item => {
 			item.addEventListener('input', function(){
-				if(item.checkValidity()){
-					item.style.borderBottom = '2px solid green';
+				if(item.checkValidity() && item.value.length != 0){
 					item.style.backgroundColor = 'rgba(0,255,0,0.1)';
 
 					switch(item.name) {
@@ -209,9 +208,7 @@ const exchangeArchiveData = {
 							this.validatedDay = true;
 							break;
 					}
-
-				}else{
-					item.style.borderBottom = '2px solid red';
+				} else {
 					item.style.backgroundColor = 'rgba(255,0,0,0.1)';
 
 					switch(item.name) {
@@ -239,6 +236,11 @@ const exchangeArchiveData = {
 			//zaznaczenie wyboru waluty
 			[...archiveDataCurrencyItem].forEach((item)=>(item.classList.remove('selected')));
 			e.target.classList.add("selected");
+
+			const archiveDataCurrencyErrorMsg = document.querySelector('.archiveData-currency-error-msg');
+			if(this.selectedCurrency){
+				archiveDataCurrencyErrorMsg.style.display = 'none';
+			};
 		}.bind(this));
 
 		archiveDataButton.addEventListener('click', function(){
@@ -250,7 +252,7 @@ const exchangeArchiveData = {
 				}
 			}
 
-			this.selectedDate = (`${year.value}-${singleDigit(month.value)}-${singleDigit(day.value)}`);
+			this.selectedDate = (`${year.value}-${singleDigit(Number(month.value))}-${singleDigit(Number(day.value))}`);
 		}.bind(this));
 	},
 
@@ -264,7 +266,14 @@ const exchangeArchiveData = {
 
 		archiveDataButton.addEventListener('click',function(){
 
-			if( !(this.validatedYear && this.validatedMonth && this.validatedDay) ) {
+			//informowanie użytkownika co jest nie tak w formularzu
+			const archiveDataCurrencyErrorMsg = document.querySelector('.archiveData-currency-error-msg');
+			if(!this.selectedCurrency){
+				console.log('dupa');
+				archiveDataCurrencyErrorMsg.style.display = 'block';
+			}
+
+			if( !(this.validatedYear && this.validatedMonth && this.validatedDay  && !!(this.selectedCurrency)) ) {
 				return false;
 			}
 
@@ -292,8 +301,6 @@ const exchangeArchiveData = {
 					archiveDataResultsSaleValue.innerText = ask;
 					console.log(resp)
 			})
-
-
 		}.bind(this));
 
 	}
