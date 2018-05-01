@@ -192,6 +192,10 @@ const exchangeArchiveData = {
 		const month = document.getElementById('month');
 		const day = document.getElementById('day');
 
+		const archiveDataErrorMsgYear = document.querySelector('.archiveData_errorMsg-year');
+		const archiveDataErrorMsgMonth = document.querySelector('.archiveData_errorMsg-month');
+		const archiveDataErrorMsgDay = document.querySelector('.archiveData_errorMsg-day');
+
 		[year, month, day].forEach( item => {
 			item.addEventListener('input', function(){
 				if(item.checkValidity() && item.value.length != 0){
@@ -200,14 +204,24 @@ const exchangeArchiveData = {
 					switch(item.name) {
 						case 'year':
 							this.validatedYear = true;
+							archiveDataErrorMsgYear.style.display = 'none';
 							break;
-						case 'month':
+							case 'month':
 							this.validatedMonth = true;
+							archiveDataErrorMsgMonth.style.display = 'none';
 							break;
-						case 'day':
+							case 'day':
 							this.validatedDay = true;
+							archiveDataErrorMsgDay.style.display = 'none';
 							break;
 					}
+
+					const archiveDataResultsErrorMsg = document.querySelector('.archiveData_results-errorMsg');
+					if(archiveDataResultsErrorMsg.style.display === 'block'){
+						archiveDataResultsErrorMsg.style.display = 'none';
+					}
+
+
 				} else {
 					item.style.backgroundColor = 'rgba(255,0,0,0.1)';
 
@@ -267,9 +281,20 @@ const exchangeArchiveData = {
 		archiveDataButton.addEventListener('click',function(){
 
 			//informowanie użytkownika co jest nie tak w formularzu
+
+			// wyświetl info jak user nie poda poprawnie daty
+			const archiveDataDateInputs = document.querySelectorAll('.archiveData_dateInputs-item');
+			[...archiveDataDateInputs].forEach(item => {
+				if (!item.checkValidity()) {
+					item.nextElementSibling.innerText = item.validationMessage;
+					item.nextElementSibling.style.display = 'block';
+
+				}
+			});
+
+			// wyświetl info jak use nie wybierze waluty
 			const archiveDataCurrencyErrorMsg = document.querySelector('.archiveData-currency-error-msg');
 			if(!this.selectedCurrency){
-				console.log('dupa');
 				archiveDataCurrencyErrorMsg.style.display = 'block';
 			}
 
@@ -288,8 +313,13 @@ const exchangeArchiveData = {
 					//przypisania wartości z api - data + wartość średdnia
 					archiveDataCurrencyDateValue.innerText = effectiveDate;
 					archiveDataResultsAvgValue.innerText = mid;
-					console.log(resp)
 				})
+				.catch(error => {
+					if (error.message === "Unexpected token N in JSON at position 4") {
+						const archiveDataResultsErrorMsg = document.querySelector('.archiveData_results-errorMsg');
+						archiveDataResultsErrorMsg.style.display = 'block';
+					}
+				});
 
 			fetch(URL_archiveCurrencySellBuy)
 				.then(resp => resp.json())
@@ -299,8 +329,13 @@ const exchangeArchiveData = {
 					//przypisania wartości z api - wartość kupna i sprzedaży
 					archiveDataResultsBuyValue.innerText = bid;
 					archiveDataResultsSaleValue.innerText = ask;
-					console.log(resp)
-			})
+				})
+				.catch(error => {
+					if (error.message === "Unexpected token N in JSON at position 4") {
+						const archiveDataResultsErrorMsg = document.querySelector('.archiveData_results-errorMsg');
+						archiveDataResultsErrorMsg.style.display = 'block';
+					}
+				});
 		}.bind(this));
 
 	}

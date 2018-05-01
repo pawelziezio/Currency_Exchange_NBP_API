@@ -108,3 +108,15 @@ input{
     display: none;
     color: red;
 }
+
+.archiveData_errorMsg{
+    display: none;
+    color: red;
+    font-size: .6rem;
+}
+
+.archiveData_results-errorMsg{
+    display: none;
+    color: red;
+    font-size: .6rem;;
+}
