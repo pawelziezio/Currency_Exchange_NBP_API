@@ -21,28 +21,30 @@
 
     <section>
         <main>
+            <h2 class='main_header'>Aktualnie obowiązujące kursy waluty</h2>
+            <div class='main_header-info'>Wybierz interesującą Ciebie walutę:</div>
+
             <div class="main_currency">
-                <button class='main-currency-item' data-currency='usd'>USD/PLN</button>
-                <button class='main-currency-item' data-currency='eur'>EUR/PLN</button>
-                <button class='main-currency-item' data-currency='chf'>CHF/PLN</button>
-                <button class='main-currency-item' data-currency='gbp'>GBP/PLN</button>
+                <button class='main-currency-item' data-currency='usd'>USD</button>
+                <button class='main-currency-item' data-currency='eur'>EUR</button>
+                <button class='main-currency-item' data-currency='chf'>CHF</button>
+                <button class='main-currency-item' data-currency='gbp'>GBP</button>
             </div>
 
-            <h2>Aktualnie obowiązujące kursy waluty:</h2>
             <div class="main_results">
-                <div class="main_currency-date">
-                    <h4>Data wyceny z dnia:</h4><span class="main_currency-dateValue"> .</span>
+                <div class="main_results-info main_results-date">
+                    <h4>Data wyceny z dnia:</h4><span class="main_currency-dateValue"></span>
                 </div>
 
-                <div class="main_results-avg">
+                <div class="main_results-info main_results-avg">
                     <h4>Kurs średni:</h4><span class="main_results-avgValue"> </span>
                 </div>
 
-                <div class="main_results-buy">
+                <div class="main_results-info main_results-buy">
                     <h4>Kurs kupna:</h4><span class="main_results-buyValue"> </span>
                 </div>
 
-                <div class="main_results-sale">
+                <div class="main_results-info main_results-sale">
                     <h4>Kurs sprzedaży:</h4><span class="main_results-saleValue"> </span>
                 </div>
             </div>
@@ -59,7 +61,7 @@
             <div class='archiveData'>
                 <h2>Dane archiwalne kursów wymiany walut</h2>
 
-                <p classs='archiveData_info'>Wybierz interesującą Ciebie walutę a następinie datę wyceny</p>
+                <p class='archiveData_info'>Wybierz interesującą Ciebie walutę a następinie datę wyceny:</p>
                 <div class="archiveData_currency">
                     <button class='archiveData-currency-item' data-currency='usd'>USD</button>
                     <button class='archiveData-currency-item' data-currency='eur'>EUR</button>
@@ -86,36 +88,38 @@
                         <input class='archiveData_dateInputs-item' type="number" name="day" value='' id="day" placeholder="26" pattern="[0-9]{1,2}"min="1" max="31"/>
                         <span class='archiveData_errorMsg archiveData_errorMsg-day'></span>
                     </div>
-                    <div class='archiveData_dateInput'>
+                    <div class='archiveData_dateInput archiveData_dateInput-button'>
                         <button class ='archiveData_button' type="button">Pokaż dane</button>
                     </div>
                 </form>
 
-                <h3>Pobrane kurs waluty z wybranego dnia</h3>
+                <div class="archiveData_results-errorMsg">Brak wyceny w podanym dniu. Proszę popraw datę!</div>
+
+                <h3>Pobrane kurs waluty z wskazanego dnia:</h3>
 
                 <div class="archiveData_results">
-                    <div class="archiveData_currency-date">
+                    <div class="archiveData_currency-date archiveData_results-item">
                         <h4>Data wyceny z dnia:</h4><span class="archiveData_currency-dateValue"></span>
                     </div>
 
-                    <div class="archiveData_results-avg">
+                    <div class="archiveData_results-avg archiveData_results-item">
                         <h4>Kurs średni:</h4><span class="archiveData_results-avgValue"> </span>
                     </div>
 
-                <div class="archiveData_results-buy">
+                <div class="archiveData_results-buy archiveData_results-item">
                         <h4>Kurs kupna:</h4><span class="archiveData_results-buyValue"> </span>
                     </div>
 
-                    <div class="archiveData_results-sale">
+                    <div class="archiveData_results-sale archiveData_results-item">
                         <h4>Kurs sprzedaży:</h4><span class="archiveData_results-saleValue"> </span>
                     </div>
                 </div>
-                <div class="archiveData_results-errorMsg">Brak wyceny w podanym dniu. Proszę popraw datę.</div>
+
             </div>
         </main>
 
         <aside>
-            <h2>Kursy średnie</h2>
+            <h2>Aktualna tabela kursów</h2>
             <h5>Tabela z dnia: <span class='aside_date'></span></h5>
 
             <table class="aside_table">

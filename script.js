@@ -199,7 +199,7 @@ const exchangeArchiveData = {
 		[year, month, day].forEach( item => {
 			item.addEventListener('input', function(){
 				if(item.checkValidity() && item.value.length != 0){
-					item.style.backgroundColor = 'rgba(0,255,0,0.1)';
+					item.style.backgroundColor = 'rgba(0,255,0,0.8)';
 
 					switch(item.name) {
 						case 'year':
@@ -223,7 +223,7 @@ const exchangeArchiveData = {
 
 
 				} else {
-					item.style.backgroundColor = 'rgba(255,0,0,0.1)';
+					item.style.backgroundColor = 'rgba(255,0,0,0.8)';
 
 					switch(item.name) {
 						case 'year':
