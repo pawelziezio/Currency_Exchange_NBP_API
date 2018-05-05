@@ -19,6 +19,7 @@ header{
 }
 
 section{
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,7 +38,7 @@ aside{
 
 .main_header{
     font-size: 1.2rem;
-    padding: 4vh 0;
+    padding: 6vh 0;
 }
 @media only screen and (min-width:730px){
     h1{
@@ -45,7 +46,7 @@ aside{
     }
     .main_header{
         font-size: 2.4rem;
-        padding-top: 4rem;
+        padding-top: 1rem;
     }
 }
 
@@ -178,8 +179,9 @@ aside{
 .archiveData{
     padding-top: 4rem;
 }
+
 @media only screen and (min-width: 480px){
-    h2{
+    .table_header{
         font-size: 2.2rem;
         padding: 2rem 0 1rem;
     }
@@ -245,7 +247,7 @@ aside{
 .archiveData_button{
     width: 80%;
     margin: 1rem;
-    font-size: .8rem;
+    font-size: 1rem;
 }
 
 label{
@@ -317,11 +319,9 @@ h4{
     font-size: .8rem;
 }
 
-aside{
-    padding: 4rem 0;
-}
+
 h5{
-    padding: .6rem 0;
+    padding-bottom: .6rem;
 }
 
 .aside_table{
