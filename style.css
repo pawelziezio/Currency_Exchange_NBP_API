@@ -129,6 +129,7 @@ aside{
     justify-content: space-between;
     padding: .2vh;
 }
+
 .main_results h4{
     display: inline-block;
     font-size: 1rem;
@@ -162,9 +163,9 @@ aside{
   .ct-chart.ct-perfect-fourth{
       height: 300px ;
   }
-
   /* ------- */
-.choice-number-of-days{
+
+  .choice-number-of-days{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -190,7 +191,6 @@ aside{
 .archiveData{
     padding-top: 4rem;
 }
-
 @media only screen and (min-width: 480px){
     .archiveData h2{
         font-size: 2rem;
@@ -276,7 +276,7 @@ input{
     font-size: 1.1rem;
 }
 
-h3{
+.archiveData_results-header{
     font-size: 1rem;
     padding: 1rem 0;
 }
@@ -332,7 +332,6 @@ h3{
 .table_header-info{
     padding-bottom: .6rem;
 }
-
 @media only screen and (min-width: 480px){
     .table_header{
         font-size: 2.2rem;
@@ -345,7 +344,6 @@ h3{
     max-width: 460px;
     font-size: .8rem;
 }
-
 tr{
      line-height: 1.6rem;
 }
