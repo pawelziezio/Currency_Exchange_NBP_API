@@ -14,7 +14,7 @@ header{
     width: 95%;
     margin: auto;
     max-width: 1200px;
-    padding: 6vh 2vw 4vh;
+    padding: 8vh 2vw 8vh;
     text-align: center;
 }
 
@@ -31,9 +31,22 @@ section{
 main{
     width: 80vw;
 }
-
 aside{
     width: 80vw;
+}
+@media only screen and (min-width:1024px){
+    main{
+        width: 67%;
+        padding-right: 3%;
+    }
+    aside{
+        width:30%;
+    }
+    section {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
 }
 
 .main_header{
@@ -111,8 +124,6 @@ aside{
     }
 }
 
-
-
 .main_results-info{
     display: flex;
     justify-content: space-between;
@@ -181,9 +192,8 @@ aside{
 }
 
 @media only screen and (min-width: 480px){
-    .table_header{
-        font-size: 2.2rem;
-        padding: 2rem 0 1rem;
+    .archiveData h2{
+        font-size: 2rem;
     }
 }
 
@@ -291,7 +301,7 @@ h3{
     padding-bottom: .2rem
 }
 
-h4{
+.main_results h4{
     font-size: .8rem;
     font-weight: normal;
 }
@@ -319,9 +329,15 @@ h4{
     font-size: .8rem;
 }
 
-
-h5{
+.table_header-info{
     padding-bottom: .6rem;
+}
+
+@media only screen and (min-width: 480px){
+    .table_header{
+        font-size: 2.2rem;
+        padding: 1rem 0 1rem;
+    }
 }
 
 .aside_table{
@@ -330,22 +346,8 @@ h5{
     font-size: .8rem;
 }
 
- tr{
+tr{
      line-height: 1.6rem;
- }
-
-
- @media only screen and (min-width:1024px){
-    main{
-        width: 67%;
-        padding-right: 3%;
-    }
-    aside{
-        width:30%;
-    }
-    section {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: row;
-    }
 }
+
+
